@@ -8,8 +8,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  Barang barang = null;
-  _HomeState({this.barang});
+  //Barang barang = null;
+  ModelBarang modelBarang = null;
+  //_HomeState({this.barang});
+  _HomeState({this.modelBarang});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,14 +20,15 @@ class _HomeState extends State<Home> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text((barang!=null)
-              ? barang.id + barang.job + barang.name
+            Text((modelBarang!=null)
+              // ? barang.id + barang.job + barang.name
+              ? modelBarang.description
               : "Belom konek"
             ),
             RaisedButton(
               onPressed: (){
-                Barang.connectToApi("baba", "Nganggur").then((value) {
-                  barang = value;
+                ModelBarang.connectToApi().then((value) {
+                  modelBarang = value;
                   setState(() {
                     
                   });
